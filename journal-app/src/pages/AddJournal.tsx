@@ -4,6 +4,7 @@ import { Card } from '../components/Card'
 import { EntryForm } from '../components/EntryForm'
 import { ErrorState } from '../components/ErrorState'
 import { LoadingState } from '../components/LoadingState'
+import { RecentDatePicker } from '../components/RecentDatePicker'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useJournalEntry } from '../hooks/useJournalEntry'
 import { useSaveJournalEntry } from '../hooks/useSaveJournalEntry'
@@ -63,6 +64,11 @@ export function AddJournal() {
           <label htmlFor={dateId} className="text-sm font-semibold">
             Date
           </label>
+          <RecentDatePicker
+            today={today}
+            selectedDate={date}
+            onSelect={handleDateChange}
+          />
           <input
             id={dateId}
             type="date"

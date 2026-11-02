@@ -46,6 +46,24 @@ export function addDays(date: IsoDate, amount: number): IsoDate {
   return toIsoDate(parsed)
 }
 
+/** Returns the last `count` calendar days ending at `today`, oldest first. */
+export function getRecentIsoDates(today: IsoDate, count: number): IsoDate[] {
+  return Array.from({ length: count }, (_, index) =>
+    addDays(today, index - (count - 1)),
+  )
+}
+
+export function formatShortDate(date: IsoDate): string {
+  const parsed = parseIsoDate(date)
+  if (!parsed) {
+    return date
+  }
+  return new Intl.DateTimeFormat(undefined, {
+    weekday: 'short',
+    day: 'numeric',
+  }).format(parsed)
+}
+
 export function formatLongDate(date: IsoDate): string {
   const parsed = parseIsoDate(date)
   if (!parsed) {
